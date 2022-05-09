@@ -7,10 +7,14 @@ package entities;
 
 public enum Stones {
 
-	FUOCO,
-	TERRA,
-	ARIA,
-	ACQUA;
+	RICARDO,    // Element 1: Ricardo Milos
+	JUAN,		// Element 2: Juan Dudoso el caballo loco
+	UMBERTO,	// Element 3: Vamos Umberto
+	GIGACHAD,	// Element 4: Avarage java enjoyer
+	HARAMBE,	// Element 5: Rip Harambe
+	DOGE,		// Element 6: Invest in DogeCoin
+	HASBULLA,   // Element 7: Best mma fighter 
+	ARANZULLA;  // Element 8: Our God 
 	
 	
 	private static int sharedStones = 0;   // Numero di pietre in comune ai due giocatori
