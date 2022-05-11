@@ -1,5 +1,7 @@
 package entities;
 
+import utilities.Equilibrio;
+
 public class TamaGolem {
 
 	private int hp = 100;   // Vita del tamagolem (Default: 100)
@@ -8,9 +10,9 @@ public class TamaGolem {
 	
 		
 
-	public TamaGolem(int hp, int dimStones) {
+	public TamaGolem(int hp) {
 		this.hp = hp;
-		this.stones = new Stones[dimStones];
+		this.stones = new Stones[Equilibrio.getElementNumber()];
 	}	
 	
 	
@@ -32,6 +34,11 @@ public class TamaGolem {
 	
 	public void setStones(Stones[] stones) {
 		this.stones = stones;
+	}
+	
+	
+	public boolean isDead() {
+		return hp <= 0 ? true : false; 
 	}
 	
 	

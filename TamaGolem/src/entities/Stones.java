@@ -28,13 +28,21 @@ public enum Stones {
 	}
 
 	
-	
 	/**
 	 * Setter per aggiornare il numero di pietre in comune
 	 * @param sharedStones Nuovo numero di pietre
 	 */
 	public static void setSharedStones(int sharedStones) {
 		Stones.sharedStones = sharedStones;
+	}
+	
+	
+	
+	public static Stones[] getNStones(int n) {
+		Stones[] s = new Stones[n];
+		for(int i = 0; i<n; i++)
+			s[i] = Stones.values()[i];
+		return s;
 	}
 	
 	

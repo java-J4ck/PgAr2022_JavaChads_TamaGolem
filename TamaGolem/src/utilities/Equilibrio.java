@@ -10,52 +10,62 @@ public class Equilibrio {
 	private static final int EASY_MODE = 4;
 	private static final int HP=10;
 	private static Stones[] powerStone;
-	private static int tamaGolemNumber;//G
-	private static int stoneElementNumber;//N
-	private static int stoneQuantity;//S
+	private static int tamaGolemNumber; // G
+	private static int elementNumber; // N
+	private static int stoneQuantity; // S
+	private static int stonesPerTamaGolem; // P
 	
 	private static int[][] equilibriumTable;
 	private static Random rand=new Random();
 	
 	public static void setDifficulty(int difficulty) {
-		int P;//P
 		switch(difficulty) {
 			case 0:
-				stoneElementNumber=EASY_MODE;
+				elementNumber=EASY_MODE;
 				break;
 			case 1:
-				stoneElementNumber=MEDIUM_MODE;
+				elementNumber=MEDIUM_MODE;
 				break;
 			case 2:
-				stoneElementNumber=HARD_MODE;
+				elementNumber=HARD_MODE;
 				break;
 			
 		}
-		powerStone=new Stones[stoneElementNumber];
-		powerStone=Arrays.copyOf(Stones.values(), stoneElementNumber);
-		P=((int) Math.ceil((stoneElementNumber+ 1) / 3.0 ))+ 1;
-		tamaGolemNumber=(int)Math.ceil((stoneElementNumber- 1)*(stoneElementNumber - 2) / (2.0 * stoneQuantity));
-		stoneQuantity=((int)Math.ceil((2 * tamaGolemNumber * P) / stoneElementNumber))* stoneElementNumber;
+		powerStone = new Stones[elementNumber];
+		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
+		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
+		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stoneQuantity));
+		stoneQuantity = ((int)Math.ceil((2 * tamaGolemNumber * stonesPerTamaGolem) / elementNumber))* elementNumber;
 		
 	}
+	
 	
 	public static int getTamaGolemNumber() {
 		return tamaGolemNumber;
 	}
 
-	public static int getStoneElementNumber() {
-		return stoneElementNumber;
+	
+	public static int getElementNumber() {
+		return elementNumber;
 	}
 
+	
 	public static int getStoneQuantity() {
 		return stoneQuantity;
 	}
 
+	
+	public static int getStonesPerTamaGolem() {
+		return stonesPerTamaGolem;
+	}
+	
+	
 	private static int getRandom(int min,int max) {
 		int result=0;
 		result=rand.nextInt(max-min+1)+min;
 		return result;
 	}
+	
 	
 	private static int getSum(int[] array) {
 		int sum=0;
@@ -64,6 +74,7 @@ public class Equilibrio {
 		
 		return sum;
 	}
+	
 	
 	private static int getNum(int sum) {
 		int num=0;
@@ -162,6 +173,7 @@ public class Equilibrio {
 		}
 		return table.toString();
 	}
+	
 	
 	
 	public static int[][] getEquilibriumTable() {

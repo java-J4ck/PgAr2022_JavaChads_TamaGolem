@@ -23,6 +23,16 @@ public class Player {
 	}
 	
 	
+	public ArrayList<TamaGolem> getTamaGolemsList() {
+		return tamagolems;
+	}
+	
+	
+	public TamaGolem getTamaGolem () {
+		return tamagolems.get(tamagolems.size() - 1);
+	}
+	
+	
 	
 	
 }
