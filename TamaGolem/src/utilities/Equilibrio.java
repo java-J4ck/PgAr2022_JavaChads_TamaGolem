@@ -8,7 +8,7 @@ public class Equilibrio {
 	private static final int HARD_MODE = 8;
 	private static final int MEDIUM_MODE = 6;
 	private static final int EASY_MODE = 4;
-	private static final int HP=10;
+	private static final int HP = 100;
 	private static Stones[] powerStone;
 	private static int tamaGolemNumber; // G
 	private static int elementNumber; // N
@@ -16,7 +16,7 @@ public class Equilibrio {
 	private static int stonesPerTamaGolem; // P
 	
 	private static int[][] equilibriumTable;
-	private static Random rand=new Random();
+	private static Random rand = new Random();
 	
 	public static void setDifficulty(int difficulty) {
 		switch(difficulty) {
@@ -58,6 +58,13 @@ public class Equilibrio {
 	public static int getStonesPerTamaGolem() {
 		return stonesPerTamaGolem;
 	}
+	
+	
+	public static int getHp() {
+		return HP;
+	}
+	
+	
 	
 	
 	private static int getRandom(int min,int max) {
@@ -145,7 +152,8 @@ public class Equilibrio {
 	}
 	
 	
-	public static boolean checkTable() {
+	
+	private static boolean checkTable() {
 		for(int i=0;i<powerStone.length;i++) { 
 			if(getSum(equilibriumTable[i])!=0) return false;
 			for(int k=0;k<powerStone.length;k++) {
@@ -156,6 +164,8 @@ public class Equilibrio {
 		}
 		return true;
 	}
+	
+	
 	
 	public static String visualizeEquilibrium() {
 		StringBuffer table= new StringBuffer("");

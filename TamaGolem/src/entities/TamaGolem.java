@@ -8,10 +8,10 @@ public class TamaGolem {
 	private Stones[] stones;   // Numero di pietre che il tamagolem puo' ingurgitare. 
 							   // La dimensione dell'array viene determinata in base alla diffolta' scelta in fase di setup.	
 	
-		
+	
 
-	public TamaGolem(int hp) {
-		this.hp = hp;
+	public TamaGolem() {
+		this.hp = Equilibrio.getHp();
 		this.stones = new Stones[Equilibrio.getElementNumber()];
 	}	
 	
@@ -22,8 +22,8 @@ public class TamaGolem {
 	}
 
 	
-	public void setHp(int hp) {
-		this.hp = hp;
+	public void decreaseHp(int n) {
+		this.hp -= n;
 	}
 	
 	

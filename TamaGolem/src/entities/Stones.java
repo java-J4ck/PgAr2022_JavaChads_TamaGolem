@@ -7,14 +7,14 @@ package entities;
 
 public enum Stones {
 
-	RICARDO,    // Element 1: Ricardo Milos
-	JUAN,		// Element 2: Juan Dudoso el caballo loco
-	UMBERTO,	// Element 3: Vamos Umberto
-	GIGACHAD,	// Element 4: Avarage java enjoyer
-	HARAMBE,	// Element 5: Rip Harambe
-	DOGE,		// Element 6: Invest in DogeCoin
-	HASBULLA,   // Element 7: Best mma fighter 
-	ARANZULLA;  // Element 8: Our God 
+	RICARDO,    // Element 0: Ricardo Milos
+	JUAN,		// Element 1: Juan Dudoso el caballo loco
+	UMBERTO,	// Element 2: Vamos Umberto
+	GIGACHAD,	// Element 3: Avarage java enjoyer
+	HARAMBE,	// Element 4: Rip Harambe
+	DOGE,		// Element 5: Invest in DogeCoin
+	HASBULLA,   // Element 6: Best mma fighter 
+	ARANZULLA;  // Element 7: Our God 
 	
 	
 	private static int sharedStones = 0;   // Numero di pietre in comune ai due giocatori
@@ -38,6 +38,13 @@ public enum Stones {
 	
 	
 	
+	
+	/**
+	 * Metodo che restituisce un array di pietre dei primi n elementi  
+	 * 
+	 * @param n Dimensione array (solitamente corrispondente al numero di elementi, determinato in fase di setup)
+	 * @return array di tipo <b>Stones</b> contenete pietre dei primi n elementi
+	 */
 	public static Stones[] getNStones(int n) {
 		Stones[] s = new Stones[n];
 		for(int i = 0; i<n; i++)

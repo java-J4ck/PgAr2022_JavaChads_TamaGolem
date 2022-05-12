@@ -13,6 +13,10 @@ public class Player {
 	}
 	
 	
+	public String getName() {
+		return this.name;
+	}
+	
 	public void addTamaGolem(TamaGolem t) {
 		this.tamagolems.add(t);
 	}
