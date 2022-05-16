@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 /**
  * Enumerazione che implementa le <b>pietre degli elementi</b>. 
  *
@@ -17,41 +20,33 @@ public enum Stones {
 	ARANZULLA;  // Element 7: Our God 
 	
 	
-	private static int sharedStones = 0;   // Numero di pietre in comune ai due giocatori
-
+	private static Hashtable<Stones, Integer> sharedStones = new Hashtable<>();   // ArrayList di pietre in comune ai due giocatori
 	
-	/**
-	 * @return Il numero di pietre in comune ai due giocatori
-	 */
-	public static int getSharedstones() {
+	
+	public static void setSharedStones(int size, int nPerType) {
+		for(int i=0; i<size/nPerType; i++) {
+			sharedStones.put(Stones.values()[i], nPerType);
+		}
+		
+	}
+	
+	
+	public static Hashtable<Stones, Integer> getSharedStones(){
 		return sharedStones;
 	}
-
 	
-	/**
-	 * Setter per aggiornare il numero di pietre in comune
-	 * @param sharedStones Nuovo numero di pietre
-	 */
-	public static void setSharedStones(int sharedStones) {
-		Stones.sharedStones = sharedStones;
+	
+	public static void addStone(Stones s) {
+		if(sharedStones.replace(s, sharedStones.get(s) + 1) == null) {
+			sharedStones.put(s, 1);
+		}
 	}
 	
 	
-	
-	
-	/**
-	 * Metodo che restituisce un array di pietre dei primi n elementi  
-	 * 
-	 * @param n Dimensione array (corrispondente al numero di elementi, determinato in fase di setup)
-	 * @return array di tipo <b>Stones</b> contenete pietre dei primi n elementi
-	 */
-	public static Stones[] getNStones(int n) {
-		Stones[] s = new Stones[n];
-		for(int i = 0; i<n; i++)
-			s[i] = Stones.values()[i];
-		return s;
+	public static void removeStone(Stones s) {
+		sharedStones.replace(s, sharedStones.get(s) - 1);
+		if(sharedStones.get(s) == 0) sharedStones.remove(s);
 	}
-	
 	
 	
 	

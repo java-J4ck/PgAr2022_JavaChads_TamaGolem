@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Arrays;
+
 import utilities.Equilibrio;
 
 public class TamaGolem {
@@ -33,7 +35,7 @@ public class TamaGolem {
 	
 	
 	public void setStones(Stones[] stones) {
-		this.stones = stones;
+		this.stones = Arrays.copyOf(stones, stones.length);
 	}
 	
 	

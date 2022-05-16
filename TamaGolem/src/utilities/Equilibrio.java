@@ -27,6 +27,7 @@ public class Equilibrio {
 	private static int elementNumber; // N(numero di elementi)
 	private static int stoneQuantity; // S(quantità di pietre nella riserva comune)
 	private static int stonesPerTamaGolem; // P(pietre per ogni tamagolem)
+	private static int stonesPerType; // s/n
 	
 	private static int[][] equilibriumTable; // matrice equilibrio
 	private static Random rand = new Random();
@@ -60,8 +61,9 @@ public class Equilibrio {
 		//calcoli utilizzando le formule sulle slide
 		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
 		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
-		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stoneQuantity));
+		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stonesPerTamaGolem));
 		stoneQuantity = ((int)Math.ceil((2 * tamaGolemNumber * stonesPerTamaGolem) / elementNumber))* elementNumber;
+		stonesPerType = stoneQuantity/elementNumber;
 		
 	}
 	
@@ -83,6 +85,10 @@ public class Equilibrio {
 	
 	public static int getStonesPerTamaGolem() {
 		return stonesPerTamaGolem;
+	}
+	
+	public static int getStonesPerType() {
+		return stonesPerType;
 	}
 	
 	
