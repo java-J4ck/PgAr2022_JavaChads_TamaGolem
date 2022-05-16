@@ -57,20 +57,23 @@ public class Main {
 		
 		
 		
+			Equilibrio.setDifficulty(scelta);
+			Equilibrio.generateEquilibrium();  // Genera l'equilibrio
 		
 		
 		
 		
-		
-			for(int i=0; i <= Equilibrio.getElementNumber(); i++) {
+			for(int i=0; i < Equilibrio.getElementNumber(); i++) {
 				
 				p1.addTamaGolem(new TamaGolem()); 
 				p2.addTamaGolem(new TamaGolem());
 				
-				Player winner = Battle.battleManager(p1, p2,scelta);			
-				System.out.printf("THE WINNER IS %s", winner.getName());
+				
 		
-		}		
+		}	
+			
+			Player winner = Battle.battleManager(p1, p2);			
+			System.out.printf("THE WINNER IS %s", winner.getName());
 		
 		
 		
