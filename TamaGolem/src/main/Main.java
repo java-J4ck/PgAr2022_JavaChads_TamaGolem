@@ -41,13 +41,13 @@ public class Main {
 			
 			
 			System.out.println("Nome del primo giocatore ");
-<<<<<<< HEAD
+
 			String nome= Main.lettoreStdin.next();
-=======
-			String nome = Main.LettoreStdin.next();
->>>>>>> 67b5367ade5701410cdb817133cb7443af70a224
+
+			String nome2 = Main.lettoreStdin.next();
+
 			System.out.println("Nome del secondo giocatore ");
-			String nome2 = Main.lettoreStdin.next();			
+			nome2 = Main.lettoreStdin.next();			
 			Player p1 = new Player(nome);
 			Player p2 = new Player(nome2);
 			System.out.println();
@@ -72,11 +72,11 @@ public class Main {
 				
 				
 		
-<<<<<<< HEAD
+
 		    }	
-=======
-			}	
->>>>>>> 67b5367ade5701410cdb817133cb7443af70a224
+
+				
+
 			
 			Player winner = Battle.battleManager(p1, p2);			
 			System.out.printf("THE WINNER IS %s", winner.getName());

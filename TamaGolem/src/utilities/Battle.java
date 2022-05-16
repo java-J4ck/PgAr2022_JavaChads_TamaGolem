@@ -15,13 +15,9 @@ public class Battle {
 	
 	
 	public static Player battleManager(Player p1, Player p2) {
-<<<<<<< HEAD
-=======
 		
 		// System.out.println(Equilibrio.visualizeEquilibrium()); /**/
->>>>>>> 67b5367ade5701410cdb817133cb7443af70a224
-	
-			
+				
 		int[][] equilibriumTable = Equilibrio.getEquilibriumTable();
 		int power = 0;
 		
