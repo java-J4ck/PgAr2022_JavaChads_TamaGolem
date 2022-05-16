@@ -42,7 +42,7 @@ public enum Stones {
 	/**
 	 * Metodo che restituisce un array di pietre dei primi n elementi  
 	 * 
-	 * @param n Dimensione array (solitamente corrispondente al numero di elementi, determinato in fase di setup)
+	 * @param n Dimensione array (corrispondente al numero di elementi, determinato in fase di setup)
 	 * @return array di tipo <b>Stones</b> contenete pietre dei primi n elementi
 	 */
 	public static Stones[] getNStones(int n) {
