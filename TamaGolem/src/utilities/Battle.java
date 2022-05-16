@@ -15,11 +15,9 @@ public class Battle {
 	
 	
 	public static Player battleManager(Player p1, Player p2) {
-
-		Equilibrio.setDifficulty(1);
-		Equilibrio.generateEquilibrium();  // Genera l'equilibrio
-		// System.out.println(Equilibrio.visualizeEquilibrium()); 
 		
+		// System.out.println(Equilibrio.visualizeEquilibrium()); /**/
+	
 		int[][] equilibriumTable = Equilibrio.getEquilibriumTable();
 		int power = 0;
 		
