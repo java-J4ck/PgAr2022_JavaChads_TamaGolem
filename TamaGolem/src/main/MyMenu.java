@@ -31,7 +31,7 @@ public class MyMenu {
 		int scelta = 0;
 		do {
 			System.out.println(RICHIESTA_INSERIMENTO);
-			// scelta = Main.LettoreStdin.nextInt(); // METTI IL TUO LETTORE
+			
 		} while(scelta > voci.length);
 
 		return scelta;	 

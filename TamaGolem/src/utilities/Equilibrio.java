@@ -3,21 +3,45 @@ import java.util.Arrays;
 import java.util.Random;
 
 import entities.Stones;
-
+/**
+ * La classe <b> EQUILIBRIO </b> si occupa:
+ * <ul>
+ * <li> dei calcoli dei parametri di gioco(numero di tamagolem,quantità di petre nella riserva,ecc..)</li>
+ * <li> della generazione di una matrice che desriva l'equilibrio</li>
+ * </ul>
+ * 
+ * la matrice equilibrio è una matrice quadrata di dimensioni pari agli elemanti usati
+ * i numeri negativi simboleggiano una debolezza verso un tipo,il contrario per i positivi.
+ * esempio: equilibriumTable[pietra1][pietra2]=4 in questo caso pietra1 è forte contro la pietra2 (pietra1--4-->pietra2)
+ * esempio 2: equilibriumTable[pietra1][pietra2]=-8 in questo caso pietra1 è debole contro la pietra2 (pietra2--8-->pietra1)
+ * 
+ *
+ */
 public class Equilibrio {
-	private static final int HARD_MODE = 8;
-	private static final int MEDIUM_MODE = 6;
-	private static final int EASY_MODE = 4;
-	private static final int HP = 100;
-	private static Stones[] powerStone;
-	private static int tamaGolemNumber; // G
-	private static int elementNumber; // N
-	private static int stoneQuantity; // S
-	private static int stonesPerTamaGolem; // P
+	private static final int HARD_MODE = 8;//numero di elementi nella modalità difficile
+	private static final int MEDIUM_MODE = 6;//numero di elementi nella modalità media
+	private static final int EASY_MODE = 4;//numero di elementi nella modalità facile
+	private static final int HP = 100;//numero di punti vita di un tamagolem
+	private static Stones[] powerStone;//pietre usate
+	private static int tamaGolemNumber; // G(numero di tamagolem)
+	private static int elementNumber; // N(numero di elementi)
+	private static int stoneQuantity; // S(quantità di pietre nella riserva comune)
+	private static int stonesPerTamaGolem; // P(pietre per ogni tamagolem)
 	
-	private static int[][] equilibriumTable;
+	private static int[][] equilibriumTable;//matrice equilibrio
 	private static Random rand = new Random();
 	
+	/**
+	 * metodo che esegue i calcoli dei perametri
+	 * prende in input la difficoltà(un numero intero che definisce il numero di elementi usati):
+	 * <ul>
+	 * <li>0 per la partita facile con 4 elementi</li>
+	 * <li>1 per la partita media con 6 elementi</li>
+	 * <li>2 per la partita difficile con 8 elementi</li>
+	 * </ul>
+	 * 
+	 * 
+	 */
 	public static void setDifficulty(int difficulty) {
 		switch(difficulty) {
 			case 0:
@@ -32,6 +56,7 @@ public class Equilibrio {
 			
 		}
 		powerStone = new Stones[elementNumber];
+		//calcoli utilizzando le formule sulle slide
 		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
 		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
 		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stoneQuantity));
@@ -66,14 +91,23 @@ public class Equilibrio {
 	
 	
 	
-	
+	/**
+	 * metodo che genera un valore casuale compreso tra due estremi <b> min </b> e <b> max </b>
+	 * @param min(estremo inferiore)
+	 * @param max(estremo superiore)
+	 * @return valore casuale
+	 */
 	private static int getRandom(int min,int max) {
 		int result=0;
 		result=rand.nextInt(max-min+1)+min;
 		return result;
 	}
 	
-	
+	/**
+	 * ritorna la somma degli elementi di un array
+	 * @param array
+	 * @return
+	 */
 	private static int getSum(int[] array) {
 		int sum=0;
 		
@@ -82,7 +116,18 @@ public class Equilibrio {
 		return sum;
 	}
 	
-	
+	/**
+	 * 
+	 * metodo che ritorna un numero casuale in base hai pesi dei collegamenti di un nodo:
+	 * se la somma è 0 allora si può generare un numero casuale tra -HP e +HP
+	 * se la somma è 1 o -1 allora si può generare un numero casuale tra -HP+1 e +HP-1
+	 * se la somma la somma è maggiore di 0 cerca di far diventare la somma dei pesi 1 es: se la somma è 20 il programma genera un un numero tra -19 e -1
+	 * se la somma la somma è minore di 0 cerca di far diventare la somma dei pesi  -1 es: se la somma è -45 il programma genera un un numero tra 1 e 44
+	 * 
+	 * 
+	 * @param sum
+	 * 
+	 */
 	private static int getNum(int sum) {
 		int num=0;
 		do {
@@ -124,7 +169,7 @@ public class Equilibrio {
 	
 	public static void generateEquilibrium(){
 		int sum;
-		do {
+		{
 			equilibriumTable = new int[powerStone.length][powerStone.length];
 			for(int i=0;i<powerStone.length-1;i++) {
 				for(int k=i;k<powerStone.length;k++) {
@@ -148,7 +193,7 @@ public class Equilibrio {
 			
 			}
 		}while(!checkTable());
-		
+			
 	}
 	
 	
@@ -181,6 +226,7 @@ public class Equilibrio {
 			}
 			table.append("\n\n");
 		}
+		
 		return table.toString();
 	}
 	
