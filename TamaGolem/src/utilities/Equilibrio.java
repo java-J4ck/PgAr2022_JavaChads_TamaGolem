@@ -28,8 +28,9 @@ public class Equilibrio {
 	private static int stoneQuantity; // S(quantità di pietre nella riserva comune)
 	private static int stonesPerTamaGolem; // P(pietre per ogni tamagolem)
 	
-	private static int[][] equilibriumTable;//matrice equilibrio
+	private static int[][] equilibriumTable; // matrice equilibrio
 	private static Random rand = new Random();
+	
 	
 	/**
 	 * metodo che esegue i calcoli dei perametri
