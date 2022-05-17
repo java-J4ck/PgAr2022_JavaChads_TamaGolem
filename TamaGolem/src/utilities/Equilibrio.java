@@ -45,13 +45,13 @@ public class Equilibrio {
 	 */
 	public static void setDifficulty(int difficulty) {
 		switch(difficulty) {
-			case 0:
+			case 1:
 				elementNumber=EASY_MODE;
 				break;
-			case 1:
+			case 2:
 				elementNumber=MEDIUM_MODE;
 				break;
-			case 2:
+			case 3:
 				elementNumber=HARD_MODE;
 				break;
 			
@@ -60,7 +60,7 @@ public class Equilibrio {
 		//calcoli utilizzando le formule sulle slide
 		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
 		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
-		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stoneQuantity));
+		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stonesPerTamaGolem));
 		stoneQuantity = ((int)Math.ceil((2 * tamaGolemNumber * stonesPerTamaGolem) / elementNumber))* elementNumber;
 		
 	}

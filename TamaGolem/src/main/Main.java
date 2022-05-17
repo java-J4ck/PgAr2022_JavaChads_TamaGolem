@@ -15,88 +15,65 @@ public class Main {
 
 	//public static final String lettoreStdin = null;
 	public static  Scanner lettoreStdin = new Scanner(System.in); 
-
+	private final static String[] DIFFICULTY_OPTION= {"EASY MODE","MEDIUM MODE","HARD MODE"};
+	private final static String[] ENDGAME_OPTION= {"RIGIOCA CAMBIANDO EQUILIBRIO","RIGIOCA CON LO STESSO EQUILIBRIO","ESCI"};
 	
 	public static void main(String[] args) {
 		
 		
+		MyMenu difficultyMenu= new MyMenu("select the difficulty mode",DIFFICULTY_OPTION);
+		MyMenu endGameMenu= new MyMenu("how do you want to continue",ENDGAME_OPTION);
 		
 		System.out.println("--------------------------------");
 		System.out.println("TAMAGOLEM");
 		System.out.println("--------------------------------");
 		System.out.println();
+	
+			
+		System.out.println("Nome del primo giocatore ");
+		Player p1 = new Player(lettoreStdin.next());
 		
-			int scelta = 0;
-			do {	
-				System.out.println("Digita il numero dell'opzione desiderata >");	
-				System.out.println("--------------------------------");
-				System.out.println("1- EASY MODE");	
-				System.out.println("2- MEDIUM MODE");
-				System.out.println("3- HARD MODE");
-				System.out.println("--------------------------------");							
-				System.out.print("risposta: ");			
-				scelta = Main.lettoreStdin.nextInt()-1; // METTI IL TUO LETTORE			
-				
-			}while(scelta  > 3 || scelta < 0);
-			
-			
-			System.out.println("Nome del primo giocatore ");
-
-			String nome= Main.lettoreStdin.next();
-
-			String nome2 = Main.lettoreStdin.next();
-
-			System.out.println("Nome del secondo giocatore ");
-			nome2 = Main.lettoreStdin.next();			
-			Player p1 = new Player(nome);
-			Player p2 = new Player(nome2);
-			System.out.println();
-			
-			
-			
-			
-			System.out.print("Difficoltà: ");						  	
-			
+		System.out.println("Nome del secondo giocatore ");
+		Player p2 = new Player(lettoreStdin.next());
 		
+		int scelta,scelta2;
+		do {
 		
+			scelta=difficultyMenu.scegli();
+			if(scelta==0) break;
 			Equilibrio.setDifficulty(scelta);
 			Equilibrio.generateEquilibrium();  // Genera l'equilibrio
-		
-			int scelta2;
-			do {
-		
+			
 			for(int i=0; i < Equilibrio.getTamaGolemNumber(); i++) {
-				
 				p1.addTamaGolem(new TamaGolem()); 
 				p2.addTamaGolem(new TamaGolem());
+		   }	
+	
+					
+	
 				
+			Player winner = Battle.battleManager(p1, p2);
 				
-		
-
-		    }	
-
-				
-
-			
-			Player winner = Battle.battleManager(p1, p2);			
 			System.out.printf("THE WINNER IS %s", winner.getName());
+				
+			
+				
 			//scelta per nuova partita
-			
-			System.out.println("COME VUOI CONTINUARE?");
-			System.out.println("--------------------------------");
-			System.out.println("1- RIGIOCA CAMBIANDO EQUILIBRIO");	
-			System.out.println("2- RIGIOCA CON LO STESSO EQUILIBRIO");
-			System.out.println("3- ESCI");
-			System.out.println("--------------------------------");
-			
-			scelta2 = lettoreStdin.nextInt();
-			
+						
+			scelta2 = endGameMenu.scegli();
 			if(scelta2==1) {
+				System.out.println("L'EQUILIBRIO DELLA PARTITA ERA: ");
+				System.out.println(Equilibrio.visualizeEquilibrium()); /**/
+			}
+			
+		}while(scelta2 != 3);
+		
+		if(scelta!=0) {
 			System.out.println("L'EQUILIBRIO DELLA PARTITA ERA: ");
 			System.out.println(Equilibrio.visualizeEquilibrium()); /**/
-			}
+		}
 		
-			}while(scelta2 != 3);
+		System.out.println("GRAZIE PER AVER GIOCATO");
 		
 		
 	

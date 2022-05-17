@@ -28,12 +28,18 @@ public class MyMenu {
   	
   	public int scegli () {
   		stampaMenu();
+  		boolean error=false;
 		int scelta = 0;
 		do {
+			error=false;
 			System.out.println(RICHIESTA_INSERIMENTO);
-			
-		} while(scelta > voci.length);
-
+			try {
+			scelta=Main.lettoreStdin.nextInt();
+			}
+			catch(Exception e) {
+				error=true;
+			}
+		} while(scelta > voci.length || scelta < 0 || error );	
 		return scelta;	 
   	}
   
