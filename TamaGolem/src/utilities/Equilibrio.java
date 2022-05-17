@@ -18,6 +18,7 @@ import entities.Stones;
  *
  */
 public class Equilibrio {
+	
 	private static final int HARD_MODE = 8;//numero di elementi nella modalità difficile
 	private static final int MEDIUM_MODE = 6;//numero di elementi nella modalità media
 	private static final int EASY_MODE = 4;//numero di elementi nella modalità facile
@@ -60,7 +61,7 @@ public class Equilibrio {
 		powerStone = new Stones[elementNumber];
 		//calcoli utilizzando le formule sulle slide
 		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
-		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
+		stonesPerTamaGolem = ((int) Math.ceil((elementNumber + 1) / 3.0 )) + 1;  //??
 		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stonesPerTamaGolem));
 		stoneQuantity = ((int)Math.ceil((2 * tamaGolemNumber * stonesPerTamaGolem) / elementNumber))* elementNumber;
 		stonesPerType = stoneQuantity/elementNumber;
