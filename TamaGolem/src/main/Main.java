@@ -26,8 +26,8 @@ public class Main {
 		System.out.println("--------------------------------");
 		System.out.println();
 		
-		Player p1 = new Player("Andrea");
-		Player p2 = new Player("Giulia");
+		Player p1 = new Player("Bare");
+		Player p2 = new Player("Pintas");
 		
 		p1.addTamaGolem(new TamaGolem());
 		p1.addTamaGolem(new TamaGolem());

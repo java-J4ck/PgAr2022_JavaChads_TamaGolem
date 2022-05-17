@@ -62,7 +62,7 @@ public class Battle {
 						System.out.printf("Tamagolem 1 and Tamagolem 2 hurled the same stone (%s)!\n", t1.getStones()[i].toString());
 					}
 					if(t1.isDead() | t2.isDead()) break LOOP_TAG; // Se uno dei due tamagolem e' morto, esci dal for e procedi con l'evocazione di un tamagolem sostituto
-					System.out.printf("[!] TAMAGOLEM 1 HP : %d [!]\n[!] TAMAGOLEM 2 HP: %d[!]\n\n", t1.getHp(), t2.getHp());
+					System.out.printf("[!] TAMAGOLEM 1 HP : %d [!]\n[!] TAMAGOLEM 2 HP: %d [!]\n\n", t1.getHp(), t2.getHp());
 				}
 				
 			}
@@ -132,11 +132,19 @@ public class Battle {
 				System.out.printf("Numbers that does not correspond to an element are setted by defult to a random number.\n", elementNum);
 			}
 			else {
-				s[i] = Stones.values()[nextInt >= 0 ? (nextInt < Stones.getSharedStones().size() ? nextInt : 0) : 0];      // DA FARE: GESTIONE INPUT INVALIDO 		
-				Stones.removeStone(s[i++]);																	             
-				
+				Stones selectedStone = Stones.values()[nextInt >= 0 ? (nextInt < Stones.values().length ? nextInt : 0) : 0];  // Controlla se il numero inserito corrisponde a un elemento, in caso contrario imposta di default l'elemento 0
+				if(Stones.getSharedStones().containsKey(selectedStone)) {   // Controlla se l'elemento selezionato e' ancora disponibile nelle pietre comuni
+					s[i] = selectedStone;   
+					Stones.removeStone(s[i++]);  // Rimuovi l'elemento selezionato dalle pietre comuni disponibili e incrementa l'indice i
+				}
+				else {
+					s[i] = Stones.getSharedStones().keys().nextElement();   // Se il giocatore seleziona una pietra non disponibile nell'elenco delle pietre comuni, viene selezionata la prima pietra disponibile
+					Stones.removeStone(s[i++]);  // Rimuovi l'elemento selezionato dalle pietre comuni disponibili e incrementa i
+				}																	             
 			}
 		}
+		
+		if(Stones.getSharedStones().size() == 0) System.out.println("NO MORE STONE AVAILABLE!");
 		
 		t.setStones(s);
 		
