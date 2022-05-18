@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Scanner;
 
 /**
  * Questa classe rappresenta un menu testuale generico a piu' voci
@@ -12,6 +13,7 @@ package main;
 
 public class MyMenu {
 	
+	private static Scanner MyMenuScanner= new Scanner(System.in);
 	final private static String CORNICE = "--------------------------------";
 	final private static String VOCE_USCITA = "0\tEsci";
 	final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
@@ -34,7 +36,7 @@ public class MyMenu {
 			error=false;
 			System.out.println(RICHIESTA_INSERIMENTO);
 			try {
-			scelta=Main.lettoreStdin.nextInt();
+			scelta=MyMenuScanner.nextInt();
 			}
 			catch(Exception e) {
 				error=true;
