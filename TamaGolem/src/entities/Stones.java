@@ -35,10 +35,9 @@ public enum Stones {
 	 * @param nPerType Numero di pietre per elemento
 	 */
 	public static void setSharedStones(int size, int nPerType) {
-		for(int i=0; i<size/nPerType; i++) {
+			for(int i=0; i<size/nPerType; i++) {
 			sharedStones.put(Stones.values()[i], nPerType);
 		}
-		
 	}
 	
 	

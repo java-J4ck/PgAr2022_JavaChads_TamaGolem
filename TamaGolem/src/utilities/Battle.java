@@ -103,7 +103,6 @@ public class Battle {
 	
 	
 	
-	
 	/**
 	 * Metodo per la fase di evocazione del tamagolem
 	 * @param p Giocatore che deve evocare il tamagolem
@@ -121,7 +120,6 @@ public class Battle {
 		}
 		
 	}
-	
 	
 	
 	
