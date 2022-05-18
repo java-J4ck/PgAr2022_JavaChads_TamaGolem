@@ -1,40 +1,68 @@
 package entities;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
+
+/**
+ * Classe che implementa un giocatore. 
+ * <p>
+ * Ogni giocatore ha i propri tamagolem, contenuti in un <b>ArrayDeque</b>.  
+ * </p>
+ *
+ */
 public class Player {
 	
 	private String name;   // Nome del giocatore
-	private ArrayList<TamaGolem> tamagolems = new ArrayList<TamaGolem>();   // Tamagolems del player 
+	private ArrayDeque<TamaGolem> tamagolems = new ArrayDeque<>();  // Tamagolems del player
 	
 	
 	public Player(String name) {
 		this.name = name;
 	}
 	
-	
+	/**
+	 * @return Il nome del giocatore
+	 */
 	public String getName() {
 		return this.name;
 	}
 	
+	
+	/**
+	 * Aggiungi un tamagolem al giocatore (In coda alla deque)
+	 * @param t Tamagolem da aggiungere
+	 */
 	public void addTamaGolem(TamaGolem t) {
-		this.tamagolems.add(t);
+		this.tamagolems.offer(t);
 	}
 	
 	
-	public void removeTamaGolem(TamaGolem t) {
-		this.tamagolems.remove(t);
+	/**
+	 * Rimuovi un tamagolem al giocatore (Dalla testa della deque)
+	 * @param t Tamagolem da rimuovere
+	 */
+	public void removeTamaGolem() {
+		this.tamagolems.poll();
 	}
 	
 	
-	public ArrayList<TamaGolem> getTamaGolemsList() {
+	/**
+	 * @return Il tamagolem in testa alla deque
+	 */
+	public TamaGolem getTamaGolem () {
+		return tamagolems.peek();
+	}
+
+	
+	/**
+	 * @return ArrayDeque dei tamagolem del giocatore
+	 */
+	public ArrayDeque<TamaGolem> getTamaGolemsList() {
 		return tamagolems;
 	}
 	
 	
-	public TamaGolem getTamaGolem () {
-		return tamagolems.get(tamagolems.size() - 1);
-	}
 	
 	
 	
