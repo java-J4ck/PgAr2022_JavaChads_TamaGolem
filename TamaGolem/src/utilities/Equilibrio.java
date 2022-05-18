@@ -6,27 +6,27 @@ import entities.Stones;
 /**
  * La classe <b> EQUILIBRIO </b> si occupa:
  * <ul>
- * <li> dei calcoli dei parametri di gioco(numero di tamagolem,quantit‡ di petre nella riserva,ecc..)</li>
+ * <li> dei calcoli dei parametri di gioco(numero di tamagolem,quantit√† di petre nella riserva,ecc..)</li>
  * <li> della generazione di una matrice che desriva l'equilibrio</li>
  * </ul>
  * 
- * la matrice equilibrio Ë una matrice quadrata di dimensioni pari agli elemanti usati
+ * la matrice equilibrio √® una matrice quadrata di dimensioni pari agli elemanti usati
  * i numeri negativi simboleggiano una debolezza verso un tipo,il contrario per i positivi.
- * esempio: equilibriumTable[pietra1][pietra2]=4 in questo caso pietra1 Ë forte contro la pietra2 (pietra1--4-->pietra2)
- * esempio 2: equilibriumTable[pietra1][pietra2]=-8 in questo caso pietra1 Ë debole contro la pietra2 (pietra2--8-->pietra1)
+ * esempio: equilibriumTable[pietra1][pietra2]=4 in questo caso pietra1 √® forte contro la pietra2 (pietra1--4-->pietra2)
+ * esempio 2: equilibriumTable[pietra1][pietra2]=-8 in questo caso pietra1 √® debole contro la pietra2 (pietra2--8-->pietra1)
  * 
  *
  */
 public class Equilibrio {
 	
-	private static final int HARD_MODE = 8;//numero di elementi nella modalit‡ difficile
-	private static final int MEDIUM_MODE = 6;//numero di elementi nella modalit‡ media
-	private static final int EASY_MODE = 4;//numero di elementi nella modalit‡ facile
+	private static final int HARD_MODE = 8;//numero di elementi nella modalit√† difficile
+	private static final int MEDIUM_MODE = 6;//numero di elementi nella modalit√† media
+	private static final int EASY_MODE = 4;//numero di elementi nella modalit√† facile
 	private static final int HP = 100;//numero di punti vita di un tamagolem
 	private static Stones[] powerStone;//pietre usate
 	private static int tamaGolemNumber; // G(numero di tamagolem)
 	private static int elementNumber; // N(numero di elementi)
-	private static int stoneQuantity; // S(quantit‡ di pietre nella riserva comune)
+	private static int stoneQuantity; // S(quantit√† di pietre nella riserva comune)
 	private static int stonesPerTamaGolem; // P(pietre per ogni tamagolem)
 	private static int stonesPerType; // s/n
 	
@@ -36,7 +36,7 @@ public class Equilibrio {
 	
 	/**
 	 * metodo che esegue i calcoli dei perametri
-	 * prende in input la difficolt‡(un numero intero che definisce il numero di elementi usati):
+	 * prende in input la difficolt√†(un numero intero che definisce il numero di elementi usati):
 	 * <ul>
 	 * <li>0 per la partita facile con 4 elementi</li>
 	 * <li>1 per la partita media con 6 elementi</li>
@@ -47,13 +47,13 @@ public class Equilibrio {
 	 */
 	public static void setDifficulty(int difficulty) {
 		switch(difficulty) {
-			case 0:
+			case 1:
 				elementNumber=EASY_MODE;
 				break;
-			case 1:
+			case 2:
 				elementNumber=MEDIUM_MODE;
 				break;
-			case 2:
+			case 3:
 				elementNumber=HARD_MODE;
 				break;
 			
@@ -62,6 +62,7 @@ public class Equilibrio {
 		//calcoli utilizzando le formule sulle slide
 		powerStone = Arrays.copyOf(Stones.values(), elementNumber);
 		stonesPerTamaGolem = ((int) Math.ceil((elementNumber + 1) / 3.0 )) + 1;  
+		stonesPerTamaGolem = ((int) Math.ceil((elementNumber+ 1) / 3.0 ))+ 1;
 		tamaGolemNumber = (int)Math.ceil((elementNumber- 1)*(elementNumber - 2) / (2.0 * stonesPerTamaGolem));
 		stoneQuantity = ((int)Math.ceil((2 * tamaGolemNumber * stonesPerTamaGolem) / elementNumber))* elementNumber;
 		stonesPerType = stoneQuantity/elementNumber;
@@ -127,10 +128,10 @@ public class Equilibrio {
 	/**
 	 * 
 	 * metodo che ritorna un numero casuale in base hai pesi dei collegamenti di un nodo:
-	 * se la somma Ë 0 allora si puÚ generare un numero casuale tra -HP e +HP
-	 * se la somma Ë 1 o -1 allora si puÚ generare un numero casuale tra -HP+1 e +HP-1
-	 * se la somma la somma Ë maggiore di 0 cerca di far diventare la somma dei pesi 1 es: se la somma Ë 20 il programma genera un un numero tra -19 e -1
-	 * se la somma la somma Ë minore di 0 cerca di far diventare la somma dei pesi  -1 es: se la somma Ë -45 il programma genera un un numero tra 1 e 44
+	 * se la somma √® 0 allora si pu√≤ generare un numero casuale tra -HP e +HP
+	 * se la somma √® 1 o -1 allora si pu√≤ generare un numero casuale tra -HP+1 e +HP-1
+	 * se la somma la somma √® maggiore di 0 cerca di far diventare la somma dei pesi 1 es: se la somma √® 20 il programma genera un un numero tra -19 e -1
+	 * se la somma la somma √® minore di 0 cerca di far diventare la somma dei pesi  -1 es: se la somma √® -45 il programma genera un un numero tra 1 e 44
 	 * 
 	 * 
 	 * @param sum
