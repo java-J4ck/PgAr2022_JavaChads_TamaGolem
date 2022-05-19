@@ -128,10 +128,10 @@ public class Equilibrio {
 	/**
 	 * 
 	 * metodo che ritorna un numero casuale in base hai pesi dei collegamenti di un nodo:
-	 * se la somma è 0 allora si può generare un numero casuale tra -HP e +HP
-	 * se la somma è 1 o -1 allora si può generare un numero casuale tra -HP+1 e +HP-1
-	 * se la somma la somma è maggiore di 0 cerca di far diventare la somma dei pesi 1 es: se la somma è 20 il programma genera un un numero tra -19 e -1
-	 * se la somma la somma è minore di 0 cerca di far diventare la somma dei pesi  -1 es: se la somma è -45 il programma genera un un numero tra 1 e 44
+	 * se la somma e 0 allora si puo generare un numero casuale tra -HP e +HP
+	 * se la somma e 1 o -1 allora si può generare un numero casuale tra -HP+1 e +HP-1
+	 * se la somma e l a somma  maggiore di 0 cerca di far diventare la somma dei pesi 1 es: se la somma e 20 il programma genera un un numero tra -19 e -1
+	 * se la somma e l a somma  minore di 0 cerca di far diventare la somma dei pesi  -1 es: se la somma e -45 il programma genera un un numero tra 1 e 44
 	 * 
 	 * 
 	 * @param sum
@@ -159,13 +159,16 @@ public class Equilibrio {
 		return num;
 	}
 
-
+	/**
+	 * motodo che se rileva la presenza di uno 0 a fine riga lo incrementa e decrementa il primo peso disponibile
+	 * 
+	 */
 	private static void adjustLine(int line) {
 		
 			equilibriumTable[line][powerStone.length-1]++;
 			equilibriumTable[powerStone.length-1][line]= -equilibriumTable[line][powerStone.length-1];
 			for(int k=line;k<equilibriumTable[line].length-1;k++) {
-				if(equilibriumTable[line][k]!=1 && equilibriumTable[line][k]!=-10 && line!=k) {
+				if(equilibriumTable[line][k]!=1 && equilibriumTable[line][k]!=-HP && line!=k) {//il carattere da decrementare non puo essere 1(altrimenti il peso andrebbe a 0) ne -hp altrimenti si sforerebbe
 					--equilibriumTable[line][k];
 					equilibriumTable[k][line]= -equilibriumTable[line][k];
 					break;
@@ -175,7 +178,11 @@ public class Equilibrio {
 		
 		
 	}
-	
+	/**
+	 * metodo che genera l'EQUILIBRIO.
+	 * la matrice generata e' quadra e di dimensione numero degli elementi 
+	 * 
+	 */
 	public static void generateEquilibrium(){
 		int sum;
 		{
@@ -183,17 +190,17 @@ public class Equilibrio {
 			for(int i=0;i<powerStone.length-1;i++) {
 				for(int k=i;k<powerStone.length;k++) {
 					if(i==k) equilibriumTable[i][k]=0;
-					else if(k<powerStone.length-1){
-						sum=(Math.abs(getSum(equilibriumTable[i]))>=Math.abs(getSum(equilibriumTable[k]))) ? getSum(equilibriumTable[i]): -getSum(equilibriumTable[k]);
-						equilibriumTable[i][k]=getNum(sum);
-						equilibriumTable[k][i]= -equilibriumTable[i][k];
+					else if(k<powerStone.length-1){//per ogni riga decide il peso da mettere in base alla somma dei pesi dell'elemento corrente e di quello a cui e collegato
+						sum=(Math.abs(getSum(equilibriumTable[i]))>=Math.abs(getSum(equilibriumTable[k]))) ? getSum(equilibriumTable[i]): -getSum(equilibriumTable[k]);//per generare il peso utilizza la somma piu alta tra l'elemento corrente e quello con cui sta facendo il collegamento
+						equilibriumTable[i][k]=getNum(sum);//prende il numero da mettere sulla riga 
+						equilibriumTable[k][i]= -equilibriumTable[i][k];//ne mette uno speculare cambiato di segno
 					}
 						
 					else {
-						equilibriumTable[i][k]= -getSum(equilibriumTable[i]);
-						equilibriumTable[k][i]= -equilibriumTable[i][k];
+						equilibriumTable[i][k]= -getSum(equilibriumTable[i]);//per l'ultimo carattere si usa la somma degli altri cambiata di segno per avere la somma totale 0
+						equilibriumTable[k][i]= -equilibriumTable[i][k];//ne mette uno speculare cambiato di segno(se A e forte contro B allora B e debole contro A)
 						
-						if(equilibriumTable[i][k]==0 && i!=powerStone.length-1) {
+						if(equilibriumTable[i][k]==0 && i!=powerStone.length-1) {//se l'ultimo e 0 aggiusta i pesi
 							adjustLine(i);
 						}
 						
@@ -201,12 +208,21 @@ public class Equilibrio {
 				}
 			
 			}
-		}while(!checkTable());
+		}while(!checkTable());//ne genera un altra se per caso ci dovesse essere un errore
 			
 	}
 	
 	
-	
+	/**
+	 * metodo che controlla la validita di una tabella di equilibrio.
+	 * il metodo controlla:
+	 * <ul>
+	 * <li>se la somma di tutti i pesi di un elemento fa 0</li>
+	 * <li>se ci sono pesi da 0 in elementi diversi </li>
+	 * <li>se ci sono pesi che suparano gli HP</li>
+	 * </ul>
+	 * @return true(se giusta)
+	 */
 	private static boolean checkTable() {
 		for(int i=0;i<powerStone.length;i++) { 
 			if(getSum(equilibriumTable[i])!=0) return false;
@@ -219,7 +235,10 @@ public class Equilibrio {
 		return true;
 	}
 	
-	
+	/**
+	 * visualizza la tabella
+	 * 
+	 */
 	
 	public static String visualizeEquilibrium() {
 		StringBuffer table= new StringBuffer("");
