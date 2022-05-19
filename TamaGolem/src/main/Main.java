@@ -55,8 +55,8 @@ public class Main {
 			}
 			
 			for(int i=0; i < Equilibrio.getTamaGolemNumber(); i++) {//inserisce i  tamagolem in base al numero calcolato nell'equilibrio
-				p1.addTamaGolem(new TamaGolem()); //li aggiunge ai giocatori
-				p2.addTamaGolem(new TamaGolem());
+				if(p1.getTamaGolemsList().size()<=Equilibrio.getTamaGolemNumber()) p1.addTamaGolem(new TamaGolem()); //li aggiunge ai giocatori
+				if(p1.getTamaGolemsList().size()<=Equilibrio.getTamaGolemNumber()) p2.addTamaGolem(new TamaGolem());
 		   }	
 	
 					
