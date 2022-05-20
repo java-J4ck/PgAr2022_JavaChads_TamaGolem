@@ -62,6 +62,18 @@ public class Player {
 	}
 	
 	
+	/**
+	 * Metodo che inizializza una nuova lista di tamagolems per il player (eliminando eventuali tamagolems residui da vecchie partite)
+	 * @param n Numero di tamagolems (Dimensione lista)
+	 */
+	public void newTamagolemsList(int n) {
+		tamagolems = new ArrayDeque<>();
+		for(int i=0; i<n; i++) {
+			this.addTamaGolem(new TamaGolem());
+		}
+	}
+	
+	
 	
 	
 	

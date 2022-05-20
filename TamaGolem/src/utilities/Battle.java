@@ -1,6 +1,5 @@
 package utilities;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -79,17 +78,17 @@ public class Battle {
 					
 					if(power < 0) {   // Se la potenza della pietra di t1 contro quella di t2 e' <0, significa che t1 ha scagliato la pietra debole
 						t1.decreaseHp(Math.abs(power));  // Decrementa la vita di t1
-						System.out.printf("Tamagolem 2 (with %s stone) inflict %d of damage to tamagolem 1 (with %s stone)\n", t2.getStones()[j].toString(), Math.abs(power), t1.getStones()[i].toString());
+						System.out.printf("%s's tamagolem (with %s stone) inflict %d of damage to %s's tamagolem (with %s stone)\n", p2.getName(), t2.getStones()[j].toString(), Math.abs(power), p1.getName(), t1.getStones()[i].toString());
 					}
 					else if(power > 0) {  // Se invece la potenza della pietra t1 contro quella di t2 e' >0, t2 subira' il danno in quanto ha scagliato la pietra debole
 						t2.decreaseHp(power);     // Decrementa la vita di t2
-						System.out.printf("Tamagolem 1 (with %s stone) inflict %d of damage to tamagolem 2 (with %s stone)\n", t1.getStones()[i].toString(), power, t2.getStones()[j].toString());
+						System.out.printf("%s's tamagolem (with %s stone) inflict %d of damage to %s's tamagolem (with %s stone)\n", p1.getName(), t1.getStones()[i].toString(), power, p2.getName(), t2.getStones()[j].toString());
 					}
 					else {   // Se la potenza della pietra di t1 contro quella di t2 e' uguale a 0, significa che sono state scagliate pietre dello stesso tipo
-						System.out.printf("Tamagolem 1 and Tamagolem 2 hurled the same stone (%s)!\n", t1.getStones()[i].toString());
+						System.out.printf("%s's tamagolem and %s's tamagolem hurled the same stone (%s)!\n", p1.getName(), p2.getName(), t1.getStones()[i].toString());
 					}
 					if(t1.isDead() | t2.isDead()) break LOOP_TAG; // Se uno dei due tamagolem e' morto, esci dal for e procedi con l'evocazione di un tamagolem sostituto
-					System.out.printf("[!] TAMAGOLEM 1 HP : %d [!]\n[!] TAMAGOLEM 2 HP: %d [!]\n\n", t1.getHp(), t2.getHp());  // Stampa gli hp attuali dei due tamagolem
+					System.out.printf("[!] %s'S TAMAGOLEM HP : %d [!]\n[!] %s's TAMAGOLEM HP: %d [!]\n\n", p1.getName().toUpperCase(), t1.getHp(), p2.getName().toUpperCase(), t2.getHp());  // Stampa gli hp attuali dei due tamagolem
 					
 				}
 				
@@ -98,7 +97,7 @@ public class Battle {
 			
 			if(t1.isDead()) {  
 				p1.removeTamaGolem();   // Rimuovi il tamagolem morto   
-				System.out.println("Tamagolem 1 is DEAD!\n");
+				System.out.printf("%s's tamagolem is DEAD!\n\n", p1.getName());
 				t1 = summonTamaGolem(p1);   // Evoca il successivo tamagolem del giocatore 1
 				if(t1 == null) return p2;   // Controlla se il tamagolem e' stato evocato con successo. In caso negativo, significa che il giocatore non ha piu'
 											// tamagolem disponibili, dunque il giocatore avversario vince.
@@ -107,7 +106,7 @@ public class Battle {
 			}
 			if(t2.isDead()) {
 				p2.removeTamaGolem();    // Rimuovi il tamagolem morto
-				System.out.println("Tamagolem 2 is DEAD!\n");
+				System.out.printf("%s's tamagolem is DEAD!\n\n", p2.getName());
 				t2 = summonTamaGolem(p2);  // Evoca il successivo tamagolem del giocatore 2
 				if(t2 == null) return p1;
 				selectStones(null, t2, p1, p2);

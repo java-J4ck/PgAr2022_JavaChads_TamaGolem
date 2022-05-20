@@ -2,7 +2,6 @@
 package main;
 
 
-
 import java.util.Scanner;
 
 import entities.Player;
@@ -54,13 +53,11 @@ public class Main {
 				Equilibrio.generateEquilibrium();  // Genera l'equilibrio
 			}
 			
-			for(int i=0; i < Equilibrio.getTamaGolemNumber(); i++) {//inserisce i  tamagolem in base al numero calcolato nell'equilibrio
-				if(p1.getTamaGolemsList().size()<=Equilibrio.getTamaGolemNumber()) p1.addTamaGolem(new TamaGolem()); //li aggiunge ai giocatori
-				if(p1.getTamaGolemsList().size()<=Equilibrio.getTamaGolemNumber()) p2.addTamaGolem(new TamaGolem());
-		   }	
-	
-					
-	
+			
+			// Inizializza la lista di tamagolems per i due giocatori
+			p1.newTamagolemsList(Equilibrio.getTamaGolemNumber());
+			p2.newTamagolemsList(Equilibrio.getTamaGolemNumber());
+			
 				
 			Player winner = Battle.battleManager(p1, p2);//avvia la battaglia e prende il vincitore
 				
