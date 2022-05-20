@@ -5,17 +5,24 @@ import java.util.Scanner;
 
 import entities.*;
 
-
+/**
+ * Classe per gestire la battaglia fra i due giocatori. 
+ *
+ */
 
 public class Battle {
 
+	
 	private static final int PRINT_ELEMENT_LIST_NUM = 100;
 	private static Scanner sc = new Scanner(System.in);
 	
 	
-	
-	
-	
+	/**
+	 * Metodo che gestisce la fase di battaglia fra due giocatori
+	 * @param p1 Sfidante numero 1
+	 * @param p2 Sfidante numero 2
+	 * @return Il vincitore dello scontro
+	 */
 	public static Player battleManager(Player p1, Player p2) {
 
 		/*
@@ -173,7 +180,7 @@ public class Battle {
 	
 	
 	/**
-	 * Metodo che, a turno, chiede ai giocatori di selezionare una pietra da far inghiottire al proprio tamagolem
+	 * Metodo che chiede ad un giocatore di selezionare una pietra da far inghiottire al proprio tamagolem
 	 * @return La pietra selezionata
 	 */
 	private static Stones readStone() {
